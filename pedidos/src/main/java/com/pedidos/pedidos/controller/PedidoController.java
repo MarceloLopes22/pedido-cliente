@@ -5,7 +5,6 @@ import com.pedidos.pedidos.dto.PedidoDTO;
 import com.pedidos.pedidos.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,12 +26,12 @@ public class PedidoController {
     }
 
     @RequestMapping(value = "consultar-pedido/{numeroControle}/{dataCadastro}/{nome}/{valor}/{quantidade}/{codigoCliente}", method = RequestMethod.GET)
-    public ResponseEntity consultarPedido (@PathVariable(value = "numeroControle", required = false) Integer numeroControle,
-                                           @PathVariable(value = "dataCadastro", required = false) LocalDate dataCadastro,
-                                           @PathVariable(value = "nome", required = false) String nome,
-                                           @PathVariable(value = "valor", required = false) Double valor,
-                                           @PathVariable(value = "quantidade", required = false) Integer quantidade,
-                                           @PathVariable(value = "codigoCliente", required = false) Integer codigoCliente) {
+    public ResponseEntity consultarPedido (@PathVariable(value = "numeroControle") Integer numeroControle,
+                                           @PathVariable(value = "dataCadastro") LocalDate dataCadastro,
+                                           @PathVariable(value = "nome") String nome,
+                                           @PathVariable(value = "valor") Double valor,
+                                           @PathVariable(value = "quantidade") Integer quantidade,
+                                           @PathVariable(value = "codigoCliente") Integer codigoCliente) {
 
         Pedido pedido = service.consultarPedido(numeroControle, dataCadastro, nome, valor, quantidade, codigoCliente);
         return new ResponseEntity(pedido, HttpStatus.OK);
